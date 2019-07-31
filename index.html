@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Time</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        #demo {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            background-color: dodgerblue;
+        }
+
+        #selectGroup {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        select {
+            width: 350px;
+            height: 30px;
+        }
+
+        button {
+            position: absolute;
+            bottom: 50px;
+            left: 100px;
+            background-color: cornflowerblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 全省威秀影城隔週電影新場次公布於每週二晚間23:59 -->
+    <!-- (假設週二整天只能查到：週二 週三 週四) -->
+    <!-- 會開放未來一週(週三會查到：今天到下星期四)之場次 -->
+    <div id="demo">
+        <div id="selectGroup">
+            <select name="" id="">
+                <option value="">台中大遠百威秀影城</option>
+            </select>
+            <br>
+            <br>
+            <select name="" id="">
+                <option value="" id="3D">(3D IMAX)蜘蛛人：離家日</option>
+            </select>
+            <br>
+            <br>
+            <select name="" id="movieDate">
+
+            </select>
+        </div>
+        <button class="btn btn-primary btn-lg">前往訂票</button>
+    </div>
+
+
+    <script>
+
+        var d = new Date();
+        console.log(d);
+        var today = d.getDay();
+        console.log(today);
+        var mm = d.getMonth() + 1;
+        console.log(mm);
+        var date = d.getDate();
+        console.log(date);
+        var weekList = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
+        var searchDays = [2, 1, 0, 6, 5, 4, 3];
+        console.log(searchDays);
+        var cnt = searchDays[today];
+        console.log(cnt);
+
+
+        for (i = 0; i <= cnt; i++) {
+            mm = (d.getMonth() + 1);
+            date = d.getDate();
+            var temp = d.getDay();
+            $('#movieDate').append("<option>" + mm + '/' + date + '(' + weekList[temp] + ')' + "</option>");
+            d.setDate(d.getDate() + 1);
+            console.log(d.getDay());
+        };
+
+
+        // $('#list option:first').css('background-color', 'red');
+
+        // switch (today) {
+        //     case 1:
+        //         document.getElementById('1').innerHTML = mm + '/' + date + '(' + weekList[1] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 1) + '(' + weekList[2] + ')';
+        //         break;
+        //     case 2:
+        //         document.getElementById('1').innerHTML = mm + '/' + date + '(' + weekList[2] + ')';
+        //         break;
+        //     case 3:
+        //         document.getElementById('1').innerHTML = mm + '/' + date + '(' + weekList[3] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 1) + '(' + weekList[4] + ')';
+        //         document.getElementById('3').innerHTML = mm + '/' + (date + 2) + '(' + weekList[5] + ')';
+        //         document.getElementById('4').innerHTML = mm + '/' + (date + 3) + '(' + weekList[6] + ')';
+        //         document.getElementById('5').innerHTML = mm + '/' + (date + 4) + '(' + weekList[0] + ')';
+        //         document.getElementById('6').innerHTML = mm + '/' + (date + 5) + '(' + weekList[1] + ')';
+        //         document.getElementById('7').innerHTML = mm + '/' + (date + 6) + '(' + weekList[2] + ')';
+        //         break;
+        //     case 4:
+        //         document.getElementById('1').innerHTML = mm + '/' + (date + 4) + '(' + weekList[1] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 5) + '(' + weekList[2] + ')';
+        //         document.getElementById('4').innerHTML = mm + '/' + date + '(' + weekList[4] + ')';
+        //         document.getElementById('5').innerHTML = mm + '/' + (date + 1) + '(' + weekList[5] + ')';
+        //         document.getElementById('6').innerHTML = mm + '/' + (date + 2) + '(' + weekList[6] + ')';
+        //         document.getElementById('7').innerHTML = mm + '/' + (date + 3) + '(' + weekList[0] + ')';
+        //         break;
+        //     case 5:
+        //         document.getElementById('1').innerHTML = mm + '/' + (date + 3) + '(' + weekList[1] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 4) + '(' + weekList[2] + ')';
+        //         document.getElementById('5').innerHTML = mm + '/' + date + '(' + weekList[5] + ')';
+        //         document.getElementById('6').innerHTML = mm + '/' + (date + 1) + '(' + weekList[6] + ')';
+        //         document.getElementById('7').innerHTML = mm + '/' + (date + 2) + '(' + weekList[0] + ')';
+        //     case 6:
+        //         document.getElementById('1').innerHTML = mm + '/' + (date + 2) + '(' + weekList[1] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 3) + '(' + weekList[2] + ')';
+        //         document.getElementById('6').innerHTML = mm + '/' + date + '(' + weekList[6] + ')';
+        //         document.getElementById('7').innerHTML = mm + '/' + (date + 1) + '(' + weekList[0] + ')';
+        //         break;
+        //     case 0:
+        //         document.getElementById('1').innerHTML = mm + '/' + (date + 1) + '(' + weekList[1] + ')';
+        //         document.getElementById('2').innerHTML = mm + '/' + (date + 2) + '(' + weekList[2] + ')';
+        //         document.getElementById('7').innerHTML = mm + '/' + date + '(' + weekList[0] + ')';
+        //         break;
+
+        // };
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+
+</body>
+
+</html>
